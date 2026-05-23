@@ -1,0 +1,28 @@
+﻿using Avalonia.Data.Converters;
+using KursMVVM.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+
+namespace KursMVVM.Converters
+{
+    public class ViewModelToViewConverter : IValueConverter
+    {
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            return value switch
+            {
+                HomePageViewModel => new HomePageView { DataContext = value },
+                AboutPageViewModel => new AboutPageView { DataContext = value },
+                SettingsPageViewModel => new SettingsPageView { DataContext = value },
+                _=>null
+            };
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

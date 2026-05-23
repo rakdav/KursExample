@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:KursMVVM.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="KursMVVM.AboutPageView"
+			 x:DataType="vm:AboutPageViewModel">
+	<Design.DataContext>
+		<vm:AboutPageViewModel/>
+	</Design.DataContext>
+	<StackPanel Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+		<TextBlock Text="{Binding AppName}"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"/>
+
+		<TextBlock Text="Пример навигации между страницами"
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+		<TextBlock Text="{Binding StringFormat=Версия:{0},Path=Version}"
+                   FontSize="14"
+                   HorizontalAlignment="Center"/>
+	</StackPanel>
+  
+</UserControl>

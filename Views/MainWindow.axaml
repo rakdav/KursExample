@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KursMVVM.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="KursMVVM.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{Binding Title}"
+		xmlns:converters="clr-namespace:KursMVVM.Converters">
+	<Window.Resources>
+		<converters:ViewModelToViewConverter x:Key="ViewModelToViewConverter"/>
+	</Window.Resources>
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="7*"/>
+		</Grid.ColumnDefinitions>
+		<StackPanel DockPanel.Dock="Top"
+                    Background="LightGray"
+                    Height="50"
+					Grid.Column="0">
+			<Button Content="Главная"
+                    Width="100"
+                    Margin="5"
+                    Command="{Binding Navigate}"
+                    CommandParameter="Home"/>
+
+			<Button Content="Настройки"
+                    Width="100"
+                    Margin="5"
+                    Command="{Binding Navigate}"
+                    CommandParameter="Settings"/>
+
+			<Button Content="О программе"
+                    Width="100"
+                    Margin="5"
+                    Command="{Binding Navigate}"
+                    CommandParameter="About"/>
+		</StackPanel>
+
+		<Border Background="White" Padding="10" Grid.Column="1">
+			<ContentControl Content="{Binding CurrentPage, Converter={StaticResource ViewModelToViewConverter}}"/>
+		</Border>
+	</Grid>
+</Window>

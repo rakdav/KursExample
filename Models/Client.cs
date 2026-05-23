@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace KursMVVM.Models;
+
+public partial class Client
+{
+    public int IdClient { get; set; }
+
+    public string FirstName { get; set; } = null!;
+
+    public string? LastName { get; set; }
+
+    public string Surname { get; set; } = null!;
+
+    public string? Address { get; set; }
+
+    public string? Phone { get; set; }
+
+    public int? NumberDogovor { get; set; }
+
+    public string? DataDogovor { get; set; }
+
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+}
