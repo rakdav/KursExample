@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KursMVVM.ViewModels
 {
-    public partial class SettingsPageViewModel:ViewModelBase
+    public partial class ProductsPageViewModel:ViewModelBase
     {
         [ObservableProperty]
         private bool isDarkTheme;

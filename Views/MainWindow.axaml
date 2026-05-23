@@ -30,17 +30,22 @@
                     Command="{Binding Navigate}"
                     CommandParameter="Home"/>
 
-			<Button Content="Настройки"
+			<Button Content="Клиенты"
                     Width="100"
                     Margin="5"
                     Command="{Binding Navigate}"
                     CommandParameter="Settings"/>
 
-			<Button Content="О программе"
+			<Button Content="Продукты"
                     Width="100"
                     Margin="5"
                     Command="{Binding Navigate}"
                     CommandParameter="About"/>
+			<Button Content="Заказы"
+                    Width="100"
+                    Margin="5"
+                    Command="{Binding Navigate}"
+                    CommandParameter="Orders"/>
 		</StackPanel>
 
 		<Border Background="White" Padding="10" Grid.Column="1">

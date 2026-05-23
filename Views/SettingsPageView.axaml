@@ -5,9 +5,9 @@
              xmlns:vm="using:KursMVVM.ViewModels"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="KursMVVM.SettingsPageView"
-			 x:DataType="vm:SettingsPageViewModel">
+			 x:DataType="vm:ProductsPageViewModel">
 	<Design.DataContext>
-		<vm:SettingsPageViewModel/>
+		<vm:ProductsPageViewModel/>
 	</Design.DataContext>
 	<StackPanel Margin="20" Spacing="15">
 		<TextBlock Text="Настройки"

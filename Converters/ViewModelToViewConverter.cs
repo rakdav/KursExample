@@ -14,8 +14,9 @@ namespace KursMVVM.Converters
             return value switch
             {
                 HomePageViewModel => new HomePageView { DataContext = value },
-                AboutPageViewModel => new AboutPageView { DataContext = value },
-                SettingsPageViewModel => new SettingsPageView { DataContext = value },
+                ClientsPageViewModel => new AboutPageView { DataContext = value },
+                ProductsPageViewModel => new SettingsPageView { DataContext = value },
+                OrdersPageViewModel=>new OrdersPageView { DataContext = value },
                 _=>null
             };
         }
