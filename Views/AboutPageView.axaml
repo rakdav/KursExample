@@ -32,5 +32,6 @@
 		</Grid.RowDefinitions>
 		<ListBox Grid.Row="1" ItemsSource="{Binding Clients}"
 				 ItemTemplate="{StaticResource clientsTemplate}"/>
+		<Button Grid.Row="2" Content="Добавить" HorizontalAlignment="Right" Margin="10 0"/>
 	</Grid>
 </UserControl>

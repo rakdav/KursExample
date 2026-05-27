@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using KursMVVM.Models;
 using KursMVVM.Services;
 using System;
@@ -28,6 +29,22 @@ namespace KursMVVM.ViewModels
         {
             Task<List<Client>> task = Task.Run(() =>pageService.getClients());
             return task.Result;
+        }
+        [RelayCommand]
+        private async Task Add()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                Load();
+            }
         }
     }
 }
