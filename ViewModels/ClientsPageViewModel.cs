@@ -36,7 +36,8 @@ namespace KursMVVM.ViewModels
         {
             try
             {
-                var dialog=new ClientWindow();
+                var dialog = new ClientWindow(new
+                    Client());
                 var result = await dialog.ShowDialog<bool>(MainWindow.Instance!);
                 if (result == true)
                 {
