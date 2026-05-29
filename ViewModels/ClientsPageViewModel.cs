@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using KursMVVM.Models;
 using KursMVVM.Services;
+using KursMVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +18,7 @@ namespace KursMVVM.ViewModels
         private ObservableCollection<Client> clients=new();
         public ClientsPageViewModel()
         {
-            pageService= new ClientsPageService();
+            pageService = new ClientsPageService();
             Load();
         }
         private void Load()
@@ -35,7 +36,12 @@ namespace KursMVVM.ViewModels
         {
             try
             {
+                var dialog=new ClientWindow();
+                var result = await dialog.ShowDialog<bool>(MainWindow.Instance!);
+                if (result == true)
+                {
 
+                }
             }
             catch (Exception ex)
             {

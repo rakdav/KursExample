@@ -30,13 +30,13 @@
                     Command="{Binding Navigate}"
                     CommandParameter="Home"/>
 
-			<Button Content="Клиенты"
+			<Button Content="Продукты"
                     Width="100"
                     Margin="5"
                     Command="{Binding Navigate}"
                     CommandParameter="Settings"/>
 
-			<Button Content="Продукты"
+			<Button Content="Клиенты"
                     Width="100"
                     Margin="5"
                     Command="{Binding Navigate}"

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using KursMVVM.Services;
+using KursMVVM.Views;
 
 namespace KursMVVM.ViewModels;
 
