@@ -14,4 +14,20 @@ public partial class AboutPageView : UserControl
     {
         AvaloniaXamlLoader.Load(this);
     }
+
+    private void Binding(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+    {
+    }
+
+    private void EditCommand_1(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+    {
+    }
+
+    private void Binding(object? sender, Avalonia.Input.TappedEventArgs e)
+    {
+    }
+
+    private void EditCommand_1(object? sender, Avalonia.Input.TappedEventArgs e)
+    {
+    }
 }

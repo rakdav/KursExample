@@ -21,6 +21,8 @@
 					<TextBlock Text="{Binding LastName}"/>
 				</StackPanel>
 				<TextBlock Text="{Binding Phone}"/>
+				<StackPanel Orientation="Horizontal">
+				</StackPanel>
 			</StackPanel>
 		</DataTemplate>
 	</UserControl.Resources>
@@ -31,9 +33,18 @@
 			<RowDefinition Height="1*"/>
 		</Grid.RowDefinitions>
 		<ListBox Grid.Row="1" ItemsSource="{Binding Clients}"
-				 ItemTemplate="{StaticResource clientsTemplate}"/>
-		<Button Grid.Row="2" Content="Добавить" 
-HorizontalAlignment="Right" Margin="10 0"
-Command="{Binding AddCommand}"/>
+				 ItemTemplate="{StaticResource clientsTemplate}"
+				 SelectedItem="{Binding SelectedClient}"/>
+		<StackPanel Grid.Row="2" Orientation="Horizontal">
+			<Button Content="Добавить" 
+				HorizontalAlignment="Right" Margin="10 0"
+				Command="{Binding AddCommand}"/>
+			<Button Content="Редактировать"
+				HorizontalAlignment="Right" Margin="10 0"
+				Command="{Binding EditCommand}" CommandParameter="{Binding SelectedClient}"/>
+			<Button Content="Удалить"
+				HorizontalAlignment="Right" Margin="10 0"
+				Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedClient}"/>
+		</StackPanel>
 	</Grid>
 </UserControl>

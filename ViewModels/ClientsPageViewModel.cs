@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Avalonia;
+using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using KursMVVM.Models;
 using KursMVVM.Services;
@@ -8,14 +10,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Tmds.DBus.Protocol;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 
 namespace KursMVVM.ViewModels
 {
-    public partial class ClientsPageViewModel:ViewModelBase
+    public partial class ClientsPageViewModel : ViewModelBase
     {
         private ClientsPageService pageService;
         [ObservableProperty]
-        private ObservableCollection<Client> clients=new();
+        private ObservableCollection<Client> clients = new();
+        [ObservableProperty]
+        private Client selectedClient;
         public ClientsPageViewModel()
         {
             pageService = new ClientsPageService();
@@ -26,9 +33,9 @@ namespace KursMVVM.ViewModels
             Clients.Clear();
             Clients = new ObservableCollection<Client>(getClients());
         }
-        private List<Client> getClients() 
+        private List<Client> getClients()
         {
-            Task<List<Client>> task = Task.Run(() =>pageService.getClients());
+            Task<List<Client>> task = Task.Run(() => pageService.getClients());
             return task.Result;
         }
         [RelayCommand]
@@ -38,10 +45,10 @@ namespace KursMVVM.ViewModels
             {
                 var dialog = new ClientWindow(new
                     Client());
-                var result = await dialog.ShowDialog<bool>(MainWindow.Instance!);
-                if (result == true)
+                Client result = await dialog.ShowDialog<Client>(MainWindow.Instance!);
+                if (result != null)
                 {
-
+                    await pageService.AddClient(result);
                 }
             }
             catch (Exception ex)
@@ -51,6 +58,37 @@ namespace KursMVVM.ViewModels
             finally
             {
                 Load();
+            }
+        }
+        [RelayCommand]
+        private async Task Edit(object param)
+        {
+            if (param != null)
+            {
+                Client client=(Client)param;
+                ClientWindow dialog = new ClientWindow(client);
+                Client result = await dialog.ShowDialog<Client>(MainWindow.Instance!);
+                if (result != null)
+                {
+                    await pageService.EditClient(result);
+                    Load();
+                }
+            }
+        }
+        [RelayCommand]
+        private async Task Delete(object param)
+        {
+            if (param != null)
+            {
+                var box = MessageBoxManager
+        .GetMessageBoxStandard("Внимание", "Вы действительно хотите удалить объект?", ButtonEnum.OkCancel);
+                ButtonResult result = await box.ShowAsync();
+                if (result == ButtonResult.Ok)
+                {
+                    Client client = (Client)param;
+                    await pageService.DeleteClient(client.IdClient);
+                    Load();
+                }
             }
         }
     }
