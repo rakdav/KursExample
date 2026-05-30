@@ -6,5 +6,6 @@ namespace KursMVVM.ViewModels
 {
     public class OrdersPageViewModel:ViewModelBase
     {
+
     }
 }

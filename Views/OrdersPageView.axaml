@@ -4,10 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="KursMVVM.OrdersPageView"
+			 xmlns:model="using:KursMVVM.Models"
 			 xmlns:vm="using:KursMVVM.ViewModels"
-			 x:DataType="vm:ClientsPageViewModel">
+			 x:DataType="vm:OrdersPageViewModel">
 	<Design.DataContext>
 		<vm:OrdersPageViewModel/>
 	</Design.DataContext>
-	Мухтар, ко мне!
+	<UserControl.Resources>
+		<DataTemplate x:Key="orderTemplate" DataType="model:Order">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding IdProduct}"/>
+				<TextBlock Text=" "/>
+				<TextBlock Text="{Binding IdClient}"/>
+				<TextBlock Text=" "/>
+				<TextBlock Text="{Binding Quantity}"/>
+			</StackPanel>
+		</DataTemplate>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="8*"/>
+			<RowDefinition Height="1*"/>
+		</Grid.RowDefinitions>
+		<ListBox Grid.Row="1" ItemsSource="{Binding}"
+				 ItemTemplate="{StaticResource orderTemplate}"
+				 SelectedItem="{Binding}"/>
+	</Grid>
 </UserControl>
