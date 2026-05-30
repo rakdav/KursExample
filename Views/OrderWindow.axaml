@@ -20,8 +20,10 @@
 				<ColumnDefinition/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<Button Grid.Column="0" Content="Сохранить" HorizontalAlignment="Center"/>
-			<Button Grid.Column="1" Content="Отменить" HorizontalAlignment="Center"/>
+			<Button Grid.Column="0" Content="Сохранить" HorizontalAlignment="Center"
+					Click="Save_Click"/>
+			<Button Grid.Column="1" Content="Отменить" HorizontalAlignment="Center"
+					Click="Cancel_Click"/>
 		</Grid>
 	</Grid>
 </Window>
