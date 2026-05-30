@@ -36,13 +36,7 @@
 		<StackPanel Grid.Row="2" Orientation="Horizontal">
 			<Button Content="Добавить"
 				HorizontalAlignment="Right" Margin="10 0"
-				Command="{Binding}"/>
-			<Button Content="Редактировать"
-				HorizontalAlignment="Right" Margin="10 0"
-				Command="{Binding}" CommandParameter="{Binding SelectedOrder}"/>
-			<Button Content="Удалить"
-				HorizontalAlignment="Right" Margin="10 0"
-				Command="{Binding}" CommandParameter="{Binding SelectedOrder}"/>
+				Command="{Binding AddCommand}"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

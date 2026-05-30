@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KursMVVM.Models;
 
-public partial class Client
+public class Client
 {
     public int IdClient { get; set; }
 

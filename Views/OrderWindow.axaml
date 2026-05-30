@@ -3,8 +3,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="350"
+		Width="300" Height="300"
         x:Class="KursMVVM.OrderWindow"
-        Title="OrderWindow">
+		xmlns:view="using:KursMVVM"
+        Title="OrderWindow"
+		xmlns:vm="using:KursMVVM.ViewModels"
+		xmlns:model="using:KursMVVM.Models"
+		x:DataType="view:OrderWindow">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
@@ -12,9 +17,24 @@
 			<RowDefinition/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<ComboBox Grid.Row="0" x:Name="ClientList" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-		<ComboBox Grid.Row="1" x:Name="ProductList" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-		<TextBox Grid.Row="2" Margin="20"/>
+		<ComboBox Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+				  SelectedValue="{Binding Order.IdClient}" ItemsSource="{Binding ClientList}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate DataType="model:Client">
+					<TextBlock Text="{Binding Surname}"/>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>	
+		</ComboBox>
+				
+		<ComboBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+				  SelectedValue="{Binding Order.IdProduct}" ItemsSource="{Binding ProductList}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate DataType="model:Product">
+					<TextBlock Text="{Binding NameProduct}"/>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<TextBox Grid.Row="2" Margin="20" Text="{Binding Order.Quantity}"/>
 		<Grid Grid.Row="3">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>

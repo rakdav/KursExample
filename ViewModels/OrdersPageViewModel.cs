@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using KursMVVM.Models;
 using KursMVVM.Services;
+using KursMVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,6 +32,24 @@ namespace KursMVVM.ViewModels
         {
             Task<List<Order>> task = Task.Run(() => orderPageService.getOrders());
             return task.Result;
+        }
+        [RelayCommand]
+        private async Task Add()
+        {
+            try
+            {
+                var dialog = new OrderWindow(new Order());
+                Order result = await dialog.ShowDialog<Order>(MainWindow.Instance!);
+                if (result != null)
+                {
+                    await orderPageService.AddOrder(result);
+                }
+            }
+            catch { }
+            finally
+            {
+                Load();
+            }
         }
     }
 }

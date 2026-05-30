@@ -2,10 +2,13 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using CommunityToolkit.Mvvm.ComponentModel;
 using KursMVVM.Models;
 using KursMVVM.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KursMVVM;
@@ -13,15 +16,18 @@ namespace KursMVVM;
 public partial class OrderWindow : Window
 {
     public Order Order { get; private set; }
+    public ObservableCollection<Client> ClientList { get; set; }
+    public ObservableCollection<Product> ProductList { get; set; }
     public OrderWindow(Order order)
     {
         InitializeComponent();
         Order = order;
-        DataContext = this;
+        
         using (KursContext db = new KursContext()) {
-            ClientList.ItemsSource = getClients();
-            ProductList.ItemsSource = getProducts();
+            ClientList = new ObservableCollection<Client>(getClients());
+            ProductList=new ObservableCollection<Product>(getProducts());
         }
+        DataContext = this;
     }
     private List<Client> getClients()
     {
