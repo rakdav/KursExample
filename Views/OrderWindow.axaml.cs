@@ -19,6 +19,7 @@ public partial class OrderWindow : Window
         DataContext = this;
         using (KursContext db = new KursContext()) {
             ClientList.ItemsSource = getClients();
+            ProductList.ItemsSource = getProducts();
         }
     }
     private List<Client> getClients()
@@ -28,7 +29,7 @@ public partial class OrderWindow : Window
     }
     private List<Product> getProducts()
     {
-        Task<List<Product>> task = Task.Run(() => new ClientsPageService().getClients());
+        Task<List<Product>> task = Task.Run(() => new ProductPageService().getProducts());
         return task.Result;
     }
 }
