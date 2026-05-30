@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="350"
+        x:Class="KursMVVM.OrderWindow"
+        Title="OrderWindow">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<ComboBox Grid.Row="0" x:Name="ClientList" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		<ComboBox Grid.Row="1" x:Name="ProductList" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		<TextBox Grid.Row="2" Margin="20"/>
+		<Grid Grid.Row="3">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="0" Content="Сохранить" HorizontalAlignment="Center"/>
+			<Button Grid.Column="1" Content="Отменить" HorizontalAlignment="Center"/>
+		</Grid>
+	</Grid>
+</Window>

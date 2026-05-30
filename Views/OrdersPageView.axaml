@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="KursMVVM.OrdersPageView"
+			 xmlns:convert="using:KursMVVM.Converters"
 			 xmlns:model="using:KursMVVM.Models"
 			 xmlns:vm="using:KursMVVM.ViewModels"
 			 x:DataType="vm:OrdersPageViewModel">
@@ -11,11 +12,13 @@
 		<vm:OrdersPageViewModel/>
 	</Design.DataContext>
 	<UserControl.Resources>
+		<convert:IdProductToNameProduct x:Key="myProductConverter"/>
+		<convert:IdClientToFIO x:Key="myClientConverter"/>
 		<DataTemplate x:Key="orderTemplate" DataType="model:Order">
-			<StackPanel Orientation="Horizontal">
-				<TextBlock Text="{Binding IdProduct}"/>
+			<StackPanel>
+				<TextBlock Text="{Binding IdProduct,Converter={StaticResource myProductConverter}}"/>
 				<TextBlock Text=" "/>
-				<TextBlock Text="{Binding IdClient}"/>
+				<TextBlock Text="{Binding IdClient,Converter={StaticResource myClientConverter}}"/>
 				<TextBlock Text=" "/>
 				<TextBlock Text="{Binding Quantity}"/>
 			</StackPanel>
@@ -27,8 +30,19 @@
 			<RowDefinition Height="8*"/>
 			<RowDefinition Height="1*"/>
 		</Grid.RowDefinitions>
-		<ListBox Grid.Row="1" ItemsSource="{Binding}"
+		<ListBox Grid.Row="1" ItemsSource="{Binding Orders}"
 				 ItemTemplate="{StaticResource orderTemplate}"
-				 SelectedItem="{Binding}"/>
+				 SelectedItem="{Binding SelectedOrder}"/>
+		<StackPanel Grid.Row="2" Orientation="Horizontal">
+			<Button Content="Добавить"
+				HorizontalAlignment="Right" Margin="10 0"
+				Command="{Binding}"/>
+			<Button Content="Редактировать"
+				HorizontalAlignment="Right" Margin="10 0"
+				Command="{Binding}" CommandParameter="{Binding SelectedOrder}"/>
+			<Button Content="Удалить"
+				HorizontalAlignment="Right" Margin="10 0"
+				Command="{Binding}" CommandParameter="{Binding SelectedOrder}"/>
+		</StackPanel>
 	</Grid>
 </UserControl>

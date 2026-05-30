@@ -19,6 +19,7 @@ namespace KursMVVM.ViewModels
         public OrdersPageViewModel()
         {
             orderPageService=new OrderPageService();
+            Load();
         }
         private void Load()
         {
