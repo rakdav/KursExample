@@ -8,19 +8,18 @@ using System.Text;
 
 namespace KursMVVM.Converters
 {
-    public class IdProductToNameProduct : IValueConverter
+    public class SurnameToId : IValueConverter
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-                int id = (int)value!;
-                using (KursContext db = new KursContext())
-                {
-                    return db.Products.FirstOrDefault(p => p.IdProduct == id)!.NameProduct;
-                }
+            return (int)value!;
+            
         }
+
         public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (value != null) return (value as Client)!.IdClient!;
+            return null;
         }
     }
 }

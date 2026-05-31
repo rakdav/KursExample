@@ -40,7 +40,7 @@ public partial class OrderWindow : Window
         return task.Result;
     }
     private void Save_Click(object sender, RoutedEventArgs e)
-    {
+    { 
         Close(Order);
     }
     private void Cancel_Click(object sender, RoutedEventArgs e)

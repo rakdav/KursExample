@@ -9,7 +9,12 @@
         Title="OrderWindow"
 		xmlns:vm="using:KursMVVM.ViewModels"
 		xmlns:model="using:KursMVVM.Models"
+		xmlns:converter="using:KursMVVM.Converters"
 		x:DataType="view:OrderWindow">
+	<Window.Resources>
+		<converter:SurnameToId x:Key="SurnameToId"/>
+		<converter:ProductNameToId x:Key="NameProductToId"/>
+	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
@@ -17,8 +22,9 @@
 			<RowDefinition/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<ComboBox Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
-				  SelectedValue="{Binding Order.IdClient}" ItemsSource="{Binding ClientList}">
+		<ComboBox Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+				  PlaceholderText="Выберите клиента" ItemsSource="{Binding ClientList}"
+				  SelectedItem="{Binding Order.IdClient,Converter={StaticResource SurnameToId}}">
 			<ComboBox.ItemTemplate>
 				<DataTemplate DataType="model:Client">
 					<TextBlock Text="{Binding Surname}"/>
@@ -26,8 +32,8 @@
 			</ComboBox.ItemTemplate>	
 		</ComboBox>
 				
-		<ComboBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-				  SelectedValue="{Binding Order.IdProduct}" ItemsSource="{Binding ProductList}">
+		<ComboBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" PlaceholderText="Выбнрите продукт"
+				  ItemsSource="{Binding ProductList}" SelectedItem="{Binding Order.IdProduct,Converter={StaticResource NameProductToId}}">
 			<ComboBox.ItemTemplate>
 				<DataTemplate DataType="model:Product">
 					<TextBlock Text="{Binding NameProduct}"/>
